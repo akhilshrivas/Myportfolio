@@ -60,12 +60,17 @@ p {
   line-height: 1.7;
 }
 
-html {
-  scroll-behavior: smooth;
+/* Responsive typography */
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
 }
 
-p {
-  color: rgb(85, 85, 85);
+@media screen and (max-width: 480px) {
+  html {
+    font-size: 12px;
+  }
 }
 
 /* TRANSITION */
@@ -158,6 +163,17 @@ a:hover {
 
 #hamburger-nav {
   display: none;
+  justify-content: space-around;
+  align-items: center;
+  height: 17vh;
+  background-color: var(--nav-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
 }
 
 .hamburger-menu {
@@ -530,14 +546,23 @@ section:nth-child(even) {
 
 /* About section image - make it wider and box-shaped */
 #about .section__pic-container {
-  width: 600px;
-  height: 400px;
+  flex: 1 1 55%;
+  width: 100%;
+  max-width: 900px;
+  height: auto;
 }
 
 #about .section__pic-container img {
   border-radius: 20px;
+  width: 100%;
+  height: auto;
+  display: block;
   object-fit: contain;
   background-color: var(--card-bg);
+}
+
+#about .about-details-container {
+  flex: 1 1 45%;
 }
 
 /* EXPERIENCE SECTION */
@@ -687,6 +712,7 @@ article .icon {
 .contact-info-container p {
   font-size: 1.1rem;
   font-weight: 500;
+  color: var(--primary-color);
 }
 
 .contact-info-container a {

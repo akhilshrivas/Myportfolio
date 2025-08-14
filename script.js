@@ -102,6 +102,8 @@ document.addEventListener('DOMContentLoaded', function() {
   loadTheme();
   addScrollAnimations();
   addTypingAnimation();
+  addResponsiveNavigation();
+  addTouchSupport();
   
   // Theme toggle event listeners
   document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
@@ -116,3 +118,55 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+// Responsive navigation functionality
+function addResponsiveNavigation() {
+  const hamburgerIcon = document.querySelector('.hamburger-icon');
+  const menuLinks = document.querySelector('.menu-links');
+  
+  if (hamburgerIcon && menuLinks) {
+    // Close menu when clicking on a link
+    const menuItems = menuLinks.querySelectorAll('a');
+    menuItems.forEach(item => {
+      item.addEventListener('click', function() {
+        menuLinks.classList.remove('open');
+        hamburgerIcon.classList.remove('open');
+      });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+      if (!hamburgerIcon.contains(event.target) && !menuLinks.contains(event.target)) {
+        menuLinks.classList.remove('open');
+        hamburgerIcon.classList.remove('open');
+      }
+    });
+  }
+}
+
+// Add touch support for mobile devices
+function addTouchSupport() {
+  // Add touch feedback for buttons
+  const buttons = document.querySelectorAll('.btn, .theme-btn');
+  buttons.forEach(button => {
+    button.addEventListener('touchstart', function() {
+      this.style.transform = 'scale(0.95)';
+    });
+    
+    button.addEventListener('touchend', function() {
+      this.style.transform = '';
+    });
+  });
+  
+  // Add touch feedback for cards
+  const cards = document.querySelectorAll('.details-container, .contact-info-container');
+  cards.forEach(card => {
+    card.addEventListener('touchstart', function() {
+      this.style.transform = 'scale(0.98)';
+    });
+    
+    card.addEventListener('touchend', function() {
+      this.style.transform = '';
+    });
+  });
+}
